@@ -1,0 +1,22 @@
+title = "Delivery"
+gitRepoUrl = "https://github.com/tomikko1/Delivery"
+
+gitSourceBranch = "master"
+changelog = true
+classOrder = []
+
+[docusaurus]
+onBrokenLinks = "throw"
+onBrokenMarkdownLinks = "warn"
+# favicon = ""
+
+# From git:
+organizationName = "tomikko1"
+projectName = "Delivery"
+url = "https://tomikko1.github.io"
+baseUrl = "/Delivery"
+tagline = ""
+
+[footer]
+style = "dark"
+copyright = "Built with Moonwave and Docusaurus"
