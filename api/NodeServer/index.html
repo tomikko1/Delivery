@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-moonwave plugin-id-moonwave" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">NodeServer | Delivery</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://tomikko1.github.io/Delivery/api/NodeServer"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="NodeServer | Delivery"><meta data-rh="true" name="description" content="This class holds the data of every node on the island.
+
+Every straight road starts and ends with a node.
+If the road has a curve, it gets broken into two straight roads both starting and ending with one node.
+The HQ and every city have a node associated with them by default.
+
+:::danger
+Changing any of the object&#x27;s properties directly may lead to unexpected behavior.
+All of the properties should be only read and changed only through the object&#x27;s methods.
+:::"><meta data-rh="true" property="og:description" content="This class holds the data of every node on the island.
+
+Every straight road starts and ends with a node.
+If the road has a curve, it gets broken into two straight roads both starting and ending with one node.
+The HQ and every city have a node associated with them by default.
+
+:::danger
+Changing any of the object&#x27;s properties directly may lead to unexpected behavior.
+All of the properties should be only read and changed only through the object&#x27;s methods.
+:::"><link data-rh="true" rel="canonical" href="https://tomikko1.github.io/Delivery/api/NodeServer"><link data-rh="true" rel="alternate" href="https://tomikko1.github.io/Delivery/api/NodeServer" hreflang="en"><link data-rh="true" rel="alternate" href="https://tomikko1.github.io/Delivery/api/NodeServer" hreflang="x-default"><link rel="stylesheet" href="/Delivery/assets/css/styles.b9f2c64d.css">
+<script src="/Delivery/assets/js/runtime~main.a8fbbbd9.js" defer="defer"></script>
+<script src="/Delivery/assets/js/main.631d8fb0.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();null!==e?t(e):window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,t("light"))}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/Delivery/"><b class="navbar__title text--truncate">Delivery</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/Delivery/api/">API</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/tomikko1/Delivery" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0 docPageContainer_wNNk"><div class="docPage_Dpn1"><div class="docSidebarContainer_o_re"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/Delivery/api/CityServer">​City​Server</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/Delivery/api/ConfigTypes">​Config​Types</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/Delivery/api/IslandServer">​Island​Server</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/Delivery/api/NodeServer">​Node​Server</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/Delivery/api/PackageServer">​Package​Server</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/Delivery/api/ReplicationServer">​Replication​Server</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/Delivery/api/RoadServer">​Road​Server</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/Delivery/api/TruckServer">​Truck​Server</a></li></ul></nav></div></div><main class="docMainContainer_HJE1"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_MU3C"><div class="docItemContainer_Wv98"><article><div class="member_J0w1 markdown"><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_oUs_"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><header><h1 class="docTitle_mZRt" style="text-decoration:none"><span style="display:inline-block">Node</span><span style="display:inline-block">Server</span></h1><div class="luaClassTags_EipM"><span class="badge_Ba2I" style="color:#00CC67"><span class="badgeTooltip_cWXP">This item only works when running on the server.</span><span class="badgeToolTipTail_H9D_"><svg fill="#00CC67" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 90 90" role="img" aria-label="This item only works when running on the server."><polygon points="6.125,72.421 58.544,88.523 58.544,24.372 6.125,8.269 "></polygon><polygon points="79.818,15.77 79.868,15.755 29.615,1.453 10.328,6.318 60.102,21.609 "></polygon><path d="M61.643,78.738l22.232-6.582V17.801l-22.232,6.584V78.738z M73.811,69.257c-1.174,0-2.125-1.19-2.125-2.659  c0-1.468,0.951-2.658,2.125-2.658c1.172,0,2.123,1.19,2.123,2.658C75.934,68.066,74.982,69.257,73.811,69.257z M64.898,32.121  l16.336-4.41v7.117l-16.336,4.409V32.121z M64.898,41.292l16.336-4.41v7.116l-16.336,4.409V41.292z M64.898,50.463l16.336-4.411  v7.116l-16.336,4.411V50.463z"></path><polygon points="83.875,74.893 61.643,81.477 61.643,88.547 83.875,81.963 "></polygon></svg> <!-- -->Server</span></span></div><label class="privateToggle_lmfE"><span class="privateCheckboxContainer_psRa"><input class="privateCheckboxInternal_IKP2" type="checkbox" name="checkbox"><span class="privateCheckboxControl_Ov8U"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="3" d="M4 11.91l5.37 5.37L19.79 5.59"></path></svg></span></span><span class="privateCheckboxLabel_Vmvs">Show Private</span></label><div>
+<p>This class holds the data of every node on the island.</p>
+<p>
+  Every straight road starts and ends with a node.
+  If the road has a curve, it gets broken into two straight roads both starting and ending with one node.
+  The HQ and every city have a node associated with them by default.
+</p>
+
+  
+    
+    
+      <div class="admonition admonition-danger alert alert--danger">
+        <div class="admonition-heading">
+          <h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
+                <path d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"></path>
+              </svg></span><span class="admonition-title">DANGER</span></h5>
+        </div>
+        <div class="admonition-content">
+          <p>
+            Changing any of the object's properties directly may lead to unexpected behavior.
+            All of the properties should be only read and changed only through the object's methods.
+          </p>
+        </div>
+      </div>
+    
+  
+
+</div></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="properties">Properties<a href="#properties" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ID"><code style="text-decoration:none">ID</code><a href="#ID" class="hash-link" aria-label="Direct link to ID" title="Direct link to ID">​</a></h3><span class="badge_Ba2I" style="color:#e74c3c"><span class="badgeTooltip_cWXP">This item is read only and cannot be modified.</span><span class="badgeToolTipTail_H9D_"><svg xmlns="http://www.w3.org/2000/svg" height="300px" width="300px" fill="#e74c3c" x="0px" y="0px" viewBox="0 0 96 96"><path d="M70.354,15.662h-7.496H25.566c-3.282,0-5.19-0.776-5.728-1.169v-1.456c0.538-0.393,2.445-1.168,5.728-1.168h46.479V8H25.566  c-4.776,0-9.594,1.468-9.594,4.747v61.458C15.972,86.645,20.328,88,37.495,88h42.535V15.662H70.354z"></path></svg> <!-- -->Read Only</span></span><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/tomikko1/Delivery/blob/master/src/Server/NodeServer.luau#L24"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>NodeServer<!-- -->.<!-- -->ID<!-- -->:<!-- --> </code> <code class="blue_P4bS">number</code></div><div>
+<p>The identification property of the node.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Island"><code style="text-decoration:none">Island</code><a href="#Island" class="hash-link" aria-label="Direct link to Island" title="Direct link to Island">​</a></h3><span class="badge_Ba2I" style="color:#e74c3c"><span class="badgeTooltip_cWXP">This item is read only and cannot be modified.</span><span class="badgeToolTipTail_H9D_"><svg xmlns="http://www.w3.org/2000/svg" height="300px" width="300px" fill="#e74c3c" x="0px" y="0px" viewBox="0 0 96 96"><path d="M70.354,15.662h-7.496H25.566c-3.282,0-5.19-0.776-5.728-1.169v-1.456c0.538-0.393,2.445-1.168,5.728-1.168h46.479V8H25.566  c-4.776,0-9.594,1.468-9.594,4.747v61.458C15.972,86.645,20.328,88,37.495,88h42.535V15.662H70.354z"></path></svg> <!-- -->Read Only</span></span><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/tomikko1/Delivery/blob/master/src/Server/NodeServer.luau#L36"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>NodeServer<!-- -->.<!-- -->Island<!-- -->:<!-- --> </code> <code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Delivery/api/IslandServer">IslandServer</a></code></div><div>
+<p>The island the node is associated with.</p>
+
+  
+    
+    
+      <div class="admonition admonition-success alert alert--success">
+        <div class="admonition-heading">
+          <h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
+                <path d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path>
+              </svg></span><span class="admonition-title">TIP</span></h5>
+        </div>
+        <div class="admonition-content">
+          <p>Use this property if you have a node and you need to interact with the island the node is on.</p>
+        </div>
+      </div>
+    
+  
+
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Position"><code style="text-decoration:none">Position</code><a href="#Position" class="hash-link" aria-label="Direct link to Position" title="Direct link to Position">​</a></h3><span class="badge_Ba2I" style="color:#e74c3c"><span class="badgeTooltip_cWXP">This item is read only and cannot be modified.</span><span class="badgeToolTipTail_H9D_"><svg xmlns="http://www.w3.org/2000/svg" height="300px" width="300px" fill="#e74c3c" x="0px" y="0px" viewBox="0 0 96 96"><path d="M70.354,15.662h-7.496H25.566c-3.282,0-5.19-0.776-5.728-1.169v-1.456c0.538-0.393,2.445-1.168,5.728-1.168h46.479V8H25.566  c-4.776,0-9.594,1.468-9.594,4.747v61.458C15.972,86.645,20.328,88,37.495,88h42.535V15.662H70.354z"></path></svg> <!-- -->Read Only</span></span><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/tomikko1/Delivery/blob/master/src/Server/NodeServer.luau#L44"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>NodeServer<!-- -->.<!-- -->Position<!-- -->:<!-- --> </code> <code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/Vector3" target="_blank" rel="noopener noreferrer">Vector3<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code></div><div>
+<p>The real world position of the node.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ConnectedNodes"><code style="text-decoration:none">ConnectedNodes</code><a href="#ConnectedNodes" class="hash-link" aria-label="Direct link to ConnectedNodes" title="Direct link to ConnectedNodes">​</a></h3><span class="badge_Ba2I" style="color:#e74c3c"><span class="badgeTooltip_cWXP">This item is read only and cannot be modified.</span><span class="badgeToolTipTail_H9D_"><svg xmlns="http://www.w3.org/2000/svg" height="300px" width="300px" fill="#e74c3c" x="0px" y="0px" viewBox="0 0 96 96"><path d="M70.354,15.662h-7.496H25.566c-3.282,0-5.19-0.776-5.728-1.169v-1.456c0.538-0.393,2.445-1.168,5.728-1.168h46.479V8H25.566  c-4.776,0-9.594,1.468-9.594,4.747v61.458C15.972,86.645,20.328,88,37.495,88h42.535V15.662H70.354z"></path></svg> <!-- -->Read Only</span></span><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/tomikko1/Delivery/blob/master/src/Server/NodeServer.luau#L56"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>NodeServer<!-- -->.<!-- -->ConnectedNodes<!-- -->:<!-- --> </code> <code class="purple_ieR2">{</code><span><code>[</code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Delivery/api/NodeServer">NodeServer</a></code><code>]</code></span><code>: </code><code class="blue_P4bS">number</code><code class="purple_ieR2">}</code></div><div>
+<p>What nodes are connected to this one and how far they are.</p>
+
+  
+    
+    
+      <div class="admonition admonition-info alert alert--info">
+        <div class="admonition-heading">
+          <h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
+                <path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path>
+              </svg></span><span class="admonition-title">INFO</span></h5>
+        </div>
+        <div class="admonition-content">
+          <p>The table value of nodeA.ConnectedNodes[nodeB] is the distance between nodeA and nodeB.</p>
+        </div>
+      </div>
+    
+  
+
+</div><h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a href="#functions" class="hash-link" aria-label="Direct link to Functions" title="Direct link to Functions">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="new"><code style="text-decoration:none">new</code><a href="#new" class="hash-link" aria-label="Direct link to new" title="Direct link to new">​</a></h3><span class="docTag__6UZ" style="border-color:#00a1e4;color:#00a1e4">Static</span><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/tomikko1/Delivery/blob/master/src/Server/NodeServer.luau#L77"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>NodeServer<!-- -->.</code><code class="green_DgR4">new</code><code>(</code><div class="inset_uKQm"><div><code>island<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Delivery/api/IslandServer">IslandServer</a></code><code>,</code></div><div><code>position<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/Vector3" target="_blank" rel="noopener noreferrer">Vector3<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Delivery/api/NodeServer">NodeServer</a></code></div><div>
+<p>Creates a new instance of the NodeServer type.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="IsConnected"><code style="text-decoration:none">IsConnected</code><a href="#IsConnected" class="hash-link" aria-label="Direct link to IsConnected" title="Direct link to IsConnected">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/tomikko1/Delivery/blob/master/src/Server/NodeServer.luau#L86"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>NodeServer<!-- -->:</code><code class="green_DgR4">IsConnected</code><code>(</code><code>node<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Delivery/api/NodeServer">NodeServer</a></code><code>) → </code><code class="blue_P4bS">boolean</code></div><div>
+<p>Returns whether the node is connected to the specified node.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ConnectNode"><code style="text-decoration:none">ConnectNode</code><a href="#ConnectNode" class="hash-link" aria-label="Direct link to ConnectNode" title="Direct link to ConnectNode">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/tomikko1/Delivery/blob/master/src/Server/NodeServer.luau#L94"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>NodeServer<!-- -->:</code><code class="green_DgR4">ConnectNode</code><code>(</code><code>node<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Delivery/api/NodeServer">NodeServer</a></code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Connects the two nodes.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="ConnectNodes"><code style="text-decoration:none">ConnectNodes</code><a href="#ConnectNodes" class="hash-link" aria-label="Direct link to ConnectNodes" title="Direct link to ConnectNodes">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/tomikko1/Delivery/blob/master/src/Server/NodeServer.luau#L102"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>NodeServer<!-- -->:</code><code class="green_DgR4">ConnectNodes</code><code>(</code><code>nodes<!-- -->: </code><code class="purple_ieR2">{</code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Delivery/api/NodeServer">NodeServer</a></code><code class="purple_ieR2">}</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Connects this node to multiple nodes at once.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="DisconnectNode"><code style="text-decoration:none">DisconnectNode</code><a href="#DisconnectNode" class="hash-link" aria-label="Direct link to DisconnectNode" title="Direct link to DisconnectNode">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/tomikko1/Delivery/blob/master/src/Server/NodeServer.luau#L110"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>NodeServer<!-- -->:</code><code class="green_DgR4">DisconnectNode</code><code>(</code><code>node<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Delivery/api/NodeServer">NodeServer</a></code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Disconnects the two nodes.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="DisconnectNodes"><code style="text-decoration:none">DisconnectNodes</code><a href="#DisconnectNodes" class="hash-link" aria-label="Direct link to DisconnectNodes" title="Direct link to DisconnectNodes">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/tomikko1/Delivery/blob/master/src/Server/NodeServer.luau#L118"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>NodeServer<!-- -->:</code><code class="green_DgR4">DisconnectNodes</code><code>(</code><code>nodes<!-- -->: </code><code class="purple_ieR2">{</code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Delivery/api/NodeServer">NodeServer</a></code><code class="purple_ieR2">}</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Disconnects this node from multiple nodes at once.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetConnectedIDs"><code style="text-decoration:none">GetConnectedIDs</code><a href="#GetConnectedIDs" class="hash-link" aria-label="Direct link to GetConnectedIDs" title="Direct link to GetConnectedIDs">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/tomikko1/Delivery/blob/master/src/Server/NodeServer.luau#L126"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>NodeServer<!-- -->:</code><code class="green_DgR4">GetConnectedIDs</code><code>(</code><code>) → </code><code class="purple_ieR2">{</code><code class="blue_P4bS">number</code><code class="purple_ieR2">}</code></div><div>
+<p>Returns the IDs of the nodes connected to this one.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetGraph"><code style="text-decoration:none">GetGraph</code><a href="#GetGraph" class="hash-link" aria-label="Direct link to GetGraph" title="Direct link to GetGraph">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/tomikko1/Delivery/blob/master/src/Server/NodeServer.luau#L135"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>NodeServer<!-- -->:</code><code class="green_DgR4">GetGraph</code><code>(</code><code>) → </code><code class="purple_ieR2">{</code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Delivery/api/NodeServer">NodeServer</a></code><code class="purple_ieR2">}</code></div><div>
+<p>
+  Returns every node that to which you can get starting from this one going only through the connected ones.
+  In other words, this returns every node that is contained by the graph this node belongs to.
+</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="FindBestPath"><code style="text-decoration:none">FindBestPath</code><a href="#FindBestPath" class="hash-link" aria-label="Direct link to FindBestPath" title="Direct link to FindBestPath">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/tomikko1/Delivery/blob/master/src/Server/NodeServer.luau#L145"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>NodeServer<!-- -->:</code><code class="green_DgR4">FindBestPath</code><code>(</code><code>to<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Delivery/api/NodeServer">NodeServer</a></code><code>) → </code><code class="purple_ieR2">{</code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Delivery/api/NodeServer">NodeServer</a></code><code class="purple_ieR2">}</code><code class="blue_P4bS">?</code></div><div>
+<p>
+  Returns the shortest path from this node to the specified one using Dijkstra's algorithm.
+  Returns nil if no such path exists or if the goal is equal to the start.
+</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Destroy"><code style="text-decoration:none">Destroy</code><a href="#Destroy" class="hash-link" aria-label="Direct link to Destroy" title="Direct link to Destroy">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/tomikko1/Delivery/blob/master/src/Server/NodeServer.luau#L152"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>NodeServer<!-- -->:</code><code class="green_DgR4">Destroy</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Destroys the node and disconnects every connected node from this one.</p>
+</div></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
+    &quot;functions&quot;: [
+        {
+            &quot;name&quot;: &quot;new&quot;,
+            &quot;desc&quot;: &quot;Creates a new instance of the NodeServer type.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;island&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;IslandServer&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;position&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Vector3&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;NodeServer&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;tags&quot;: [
+                &quot;Static&quot;
+            ],
+            &quot;source&quot;: {
+                &quot;line&quot;: 77,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;IsConnected&quot;,
+            &quot;desc&quot;: &quot;Returns whether the node is connected to the specified node.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;node&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;NodeServer&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;boolean&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 86,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ConnectNode&quot;,
+            &quot;desc&quot;: &quot;Connects the two nodes.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;node&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;NodeServer&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 94,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ConnectNodes&quot;,
+            &quot;desc&quot;: &quot;Connects this node to multiple nodes at once.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;nodes&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;{NodeServer}&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 102,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;DisconnectNode&quot;,
+            &quot;desc&quot;: &quot;Disconnects the two nodes.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;node&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;NodeServer&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 110,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;DisconnectNodes&quot;,
+            &quot;desc&quot;: &quot;Disconnects this node from multiple nodes at once.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;nodes&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;{NodeServer}&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 118,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetConnectedIDs&quot;,
+            &quot;desc&quot;: &quot;Returns the IDs of the nodes connected to this one.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;{number}&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 126,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetGraph&quot;,
+            &quot;desc&quot;: &quot;Returns every node that to which you can get starting from this one going only through the connected ones.\nIn other words, this returns every node that is contained by the graph this node belongs to.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;{NodeServer}&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 135,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;FindBestPath&quot;,
+            &quot;desc&quot;: &quot;Returns the shortest path from this node to the specified one using Dijkstra&#x27;s algorithm.\nReturns nil if no such path exists or if the goal is equal to the start.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;to&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;NodeServer&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;{NodeServer}?&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 145,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Destroy&quot;,
+            &quot;desc&quot;: &quot;Destroys the node and disconnects every connected node from this one.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 152,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        }
+    ],
+    &quot;properties&quot;: [
+        {
+            &quot;name&quot;: &quot;ID&quot;,
+            &quot;desc&quot;: &quot;The identification property of the node.&quot;,
+            &quot;lua_type&quot;: &quot;number&quot;,
+            &quot;readonly&quot;: true,
+            &quot;source&quot;: {
+                &quot;line&quot;: 24,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Island&quot;,
+            &quot;desc&quot;: &quot;The island the node is associated with.\n\n:::tip\nUse this property if you have a node and you need to interact with the island the node is on.\n:::&quot;,
+            &quot;lua_type&quot;: &quot;IslandServer&quot;,
+            &quot;readonly&quot;: true,
+            &quot;source&quot;: {
+                &quot;line&quot;: 36,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Position&quot;,
+            &quot;desc&quot;: &quot;The real world position of the node.&quot;,
+            &quot;lua_type&quot;: &quot;Vector3&quot;,
+            &quot;readonly&quot;: true,
+            &quot;source&quot;: {
+                &quot;line&quot;: 44,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;ConnectedNodes&quot;,
+            &quot;desc&quot;: &quot;What nodes are connected to this one and how far they are.\n\n:::info\nThe table value of nodeA.ConnectedNodes[nodeB] is the distance between nodeA and nodeB.\n:::&quot;,
+            &quot;lua_type&quot;: &quot;{[NodeServer]: number}&quot;,
+            &quot;readonly&quot;: true,
+            &quot;source&quot;: {
+                &quot;line&quot;: 56,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Replication&quot;,
+            &quot;desc&quot;: &quot;This handles the basic needs of the node&#x27;s replication,\nlike what players to replicate the node to etc.&quot;,
+            &quot;lua_type&quot;: &quot;ReplicationServer&quot;,
+            &quot;private&quot;: true,
+            &quot;readonly&quot;: true,
+            &quot;source&quot;: {
+                &quot;line&quot;: 66,
+                &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+            }
+        }
+    ],
+    &quot;types&quot;: [],
+    &quot;name&quot;: &quot;NodeServer&quot;,
+    &quot;desc&quot;: &quot;This class holds the data of every node on the island.\n\nEvery straight road starts and ends with a node.\nIf the road has a curve, it gets broken into two straight roads both starting and ending with one node.\nThe HQ and every city have a node associated with them by default.\n\n:::danger\nChanging any of the object&#x27;s properties directly may lead to unexpected behavior.\nAll of the properties should be only read and changed only through the object&#x27;s methods.\n:::&quot;,
+    &quot;realm&quot;: [
+        &quot;Server&quot;
+    ],
+    &quot;source&quot;: {
+        &quot;line&quot;: 16,
+        &quot;path&quot;: &quot;src/Server/NodeServer.luau&quot;
+    }
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a><ul><li><a href="#ConnectedNodes" class="table-of-contents__link toc-highlight">ConnectedNodes</a></li><li><a href="#ID" class="table-of-contents__link toc-highlight">ID</a></li><li><a href="#Island" class="table-of-contents__link toc-highlight">Island</a></li><li><a href="#Position" class="table-of-contents__link toc-highlight">Position</a></li></ul></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#ConnectNode" class="table-of-contents__link toc-highlight">:ConnectNode</a></li><li><a href="#ConnectNodes" class="table-of-contents__link toc-highlight">:ConnectNodes</a></li><li><a href="#Destroy" class="table-of-contents__link toc-highlight">:Destroy</a></li><li><a href="#DisconnectNode" class="table-of-contents__link toc-highlight">:DisconnectNode</a></li><li><a href="#DisconnectNodes" class="table-of-contents__link toc-highlight">:DisconnectNodes</a></li><li><a href="#FindBestPath" class="table-of-contents__link toc-highlight">:FindBestPath</a></li><li><a href="#GetConnectedIDs" class="table-of-contents__link toc-highlight">:GetConnectedIDs</a></li><li><a href="#GetGraph" class="table-of-contents__link toc-highlight">:GetGraph</a></li><li><a href="#IsConnected" class="table-of-contents__link toc-highlight">:IsConnected</a></li><li><a href="#new" class="table-of-contents__link toc-highlight">.new</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Built with Moonwave and Docusaurus</div></div></div></footer></div>
+</body>
+</html>
